@@ -1,0 +1,17 @@
+{
+  "name": "raydex-dao-subgraph",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "create-local": "graph create raydex-dao --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy raydex-dao --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "watch-local": "graph deploy raydex-dao --watch --debug --node http://127.0.0.1:8020/ --ipfs http://localhost:5001"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "^0.48.0",
+    "@graphprotocol/graph-ts": "^0.29.3"
+  }
+}

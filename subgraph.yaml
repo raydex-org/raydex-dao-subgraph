@@ -1,0 +1,42 @@
+specVersion: 0.0.4
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: RayDex
+    network: mainnet
+    source:
+      address: "0x49C39fd03ce1A9C0bFFb3f399CeAd4A5106F612C"
+      abi: RayDex
+      startBlock: 16605730
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - DelegateChanged
+        - DelegateVotesChanged
+        - NewAdmin
+        - NewPendingAdmin
+        - Snapshot
+        - Transfer
+      abis:
+        - name: RayDex
+          file: ./abis/RayDex.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: DelegateChanged(indexed address,indexed address,indexed address)
+          handler: handleDelegateChanged
+        - event: DelegateVotesChanged(indexed address,uint256,uint256)
+          handler: handleDelegateVotesChanged
+        - event: NewAdmin(indexed address,indexed address)
+          handler: handleNewAdmin
+        - event: NewPendingAdmin(indexed address,indexed address)
+          handler: handleNewPendingAdmin
+        - event: Snapshot(uint256)
+          handler: handleSnapshot
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
